@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Quiz List</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body>
+
+<h1>Quiz Administration</h1>
+
+<p>
+    <a th:href="@{/addQuiz}">
+        Add New Question
+    </a>
+</p>
+
+<table border="1">
+
+    <thead>
+
+    <tr>
+        <th>ID</th>
+        <th>Question</th>
+        <th>Correct Answer</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+
+    </thead>
+
+    <tbody>
+
+    <tr th:each="question : ${questions}">
+
+        <td th:text="${question.id}"></td>
+
+        <td th:text="${question.questionText}"></td>
+
+        <td th:text="${question.correctAnswer}"></td>
+
+        <td>
+            <a th:href="@{/editQuiz/{id}(id=${question.id})}">
+                Edit
+            </a>
+        </td>
+
+        <td>
+
+            <form
+                    th:action="@{/deleteQuiz/{id}(id=${question.id})}"
+                    method="post">
+
+                <input
+                        type="hidden"
+                        name="_method"
+                        value="delete"/>
+
+                <button type="submit">
+                    Delete
+                </button>
+
+            </form>
+
+        </td>
+
+    </tr>
+
+    </tbody>
+
+</table>
+
+<br>
+
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Logout</button>
+</form>
+
+</body>
+</html>

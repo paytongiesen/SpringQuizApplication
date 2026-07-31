@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Quiz Results</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body>
+
+<h2>Quiz Results</h2>
+
+<p>
+    You answered
+    <strong th:text="${score}">0</strong>
+    out of
+    <strong th:text="${total}">0</strong>
+    questions correctly.
+</p>
+
+<a th:href="@{/quiz}">
+    Back to Quiz
+</a>
+
+<br>
+
+<div>
+
+    <a th:href="@{/quiz}">
+        Take Quiz Again
+    </a>
+
+    &nbsp; | &nbsp;
+
+    <a th:href="@{/logout}">
+        Logout
+    </a>
+
+</div>
+
+</body>
+</html>

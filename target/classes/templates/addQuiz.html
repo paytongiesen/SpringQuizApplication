@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Quiz Question</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body>
+
+<h1>Add Quiz Question</h1>
+
+<form
+        th:action="@{/addQuiz}"
+        th:object="${question}"
+        method="post">
+
+    <input type="hidden"
+           th:name="${_csrf.parameterName}"
+           th:value="${_csrf.token}"/>
+
+    <div>
+        <label>Question ID</label><br>
+        <input type="number"
+               th:field="*{id}"
+               required>
+    </div>
+
+    <br>
+
+    <div>
+        <label>Question</label><br>
+
+        <textarea
+                th:field="*{questionText}"
+                rows="4"
+                cols="60"
+                required></textarea>
+    </div>
+
+    <br>
+
+    <div>
+
+        <label>Option A</label><br>
+        <input type="text"
+               th:field="*{options[0]}"
+               required>
+
+        <br><br>
+
+        <label>Option B</label><br>
+        <input type="text"
+               th:field="*{options[1]}"
+               required>
+
+        <br><br>
+
+        <label>Option C</label><br>
+        <input type="text"
+               th:field="*{options[2]}"
+               required>
+
+        <br><br>
+
+        <label>Option D</label><br>
+        <input type="text"
+               th:field="*{options[3]}"
+               required>
+
+    </div>
+
+    <br>
+
+    <div>
+
+        <label>Correct Answer</label><br>
+
+        <select th:field="*{correctAnswer}">
+
+            <option th:value="${question.options[0]}">Option A</option>
+            <option th:value="${question.options[1]}">Option B</option>
+            <option th:value="${question.options[2]}">Option C</option>
+            <option th:value="${question.options[3]}">Option D</option>
+
+        </select>
+
+    </div>
+
+    <br>
+
+    <button type="submit">
+        Save Question
+    </button>
+
+</form>
+
+<br>
+
+<a th:href="@{/quizList}">
+    Back
+</a>
+
+</body>
+</html>

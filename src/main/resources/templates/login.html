@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Quiz Application - Login</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body>
+
+<h1>Secure Quiz Application</h1>
+
+<h2>Login</h2>
+
+<form th:action="@{/login}" method="post">
+
+    <div>
+        <label>Username:</label><br>
+        <input
+                type="text"
+                name="username"
+                required>
+    </div>
+
+    <br>
+
+    <div>
+        <label>Password:</label><br>
+        <input
+                type="password"
+                name="password"
+                required>
+    </div>
+
+    <br>
+
+    <button type="submit">
+        Login
+    </button>
+
+</form>
+
+<br>
+
+<p>
+    Don't have an account?
+    <a th:href="@{/registration}">
+        Register Here
+    </a>
+</p>
+
+<div th:if="${param.error}">
+    <p style="color:red;">
+        Invalid username or password.
+    </p>
+</div>
+
+<div th:if="${param.logout}">
+    <p style="color:green;">
+        Successfully logged out.
+    </p>
+</div>
+
+</body>
+</html>
